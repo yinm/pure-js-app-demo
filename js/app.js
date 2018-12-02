@@ -1,5 +1,5 @@
-import Vue from './vue.esm.browser'
-import shuffled from './shuffled'
+import Vue from './vue.esm.browser.js'
+import shuffled from './shuffled.js'
 
 // Hide Error Message
 document.getElementById('incompatible-message').style.display = 'none'
