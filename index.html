@@ -26,7 +26,7 @@
           <div class="text text--size-big">第{{ currentQuizIndex + 1 }}問</div>
           <div class="text">{{ currentQuiz.text }}</div>
         </div>
-        <div v-for="(choice, index) in currentQuiz.choices" class="viwe__cell" :class="`view__cell--delay-${index}`">
+        <div v-for="(choice, index) in currentQuiz.choices" class="view__cell" :class="`view__cell--delay-${index}`">
           <button
             class="button button--choice"
             v-on:click="answer(currentQuiz.id, choice.id)"
@@ -41,7 +41,7 @@
           <div class="text">あなたの正解数は...</div>
           <div class="result-message">
             <div class="result-message__tettere-"></div>
-            <div claas="text text--size-big text--result">{{ resultMessage }}</div>
+            <div class="text text--size-big text--result">{{ resultMessage }}</div>
           </div>
         </div>
 
