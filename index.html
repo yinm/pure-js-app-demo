@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=375">
+  <title>ES Quiz</title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet">
+  <link href="css/app.css" rel="stylesheet">
+</head>
+<body>
+  <div id="incompatible-message" class="incompatible-message">ごめんなさい！非対応のブラウザみたいです。<br>最新のGoogle Chromeでご覧ください。</div>
+  <div class="app" id="app">
+    <transition name="view-" :duration="{ enter: 500, leave: 500 }">
+      <div class="view view--title" v-if="view === 'title'">
+        <div class="view__cell view__cell--top">
+          <div class="text text--size-big">ECMAScript<br>クイズ！</div>
+          <div class="text">(2018年版)</div>
+        </div>
+        <div class="view__cell view__cell--delay-1">
+          <button class="button button--primary" v-on:click="changeView('quiz')">はじめる</button>
+        </div>
+      </div>
+
+      <div class="view view--quiz" v-if="view === 'quiz'" :key="currentQuizIndex">
+        <div class="view__cell view__cell--top">
+          <div class="text text--size-big">第{{ currentQuizIndex + 1 }}問</div>
+          <div class="text">{{ currentQuiz.text }}</div>
+        </div>
+        <div v-for="(choice, index) in currentQuiz.choices" class="viwe__cell" :class="`view__cell--delay-${index}`">
+          <button
+            class="button button--choice"
+            v-on:click="answer(currentQuiz.id, choice.id)"
+          >
+            {{ choice.text }}
+          </button>
+        </div>
+      </div>
+
+      <div class="view view--result" v-if="view === 'result'">
+        <div class="view__cell view__cell--top">
+          <div class="text">あなたの正解数は...</div>
+          <div class="result-message">
+            <div class="result-message__tettere-"></div>
+            <div claas="text text--size-big text--result">{{ resultMessage }}</div>
+          </div>
+        </div>
+
+        <div class="view__cell view__cell--delay-7">
+          <button class="button" v-on:click="changeView('quiz')">もう一度</button>
+        </div>
+      </div>
+    </transition>
+  </div>
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>
